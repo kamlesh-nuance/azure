@@ -1,0 +1,77 @@
+<form >
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td> <label class="control-label">First Name</label></td>
+            <td>
+                <input class="form-control" name="firstName"
+                       [(ngModel)]="patientData.firstName" type="text"
+                       placeholder="firstName" autocomplete="off" required />
+            </td>
+        </tr>
+        <tr>
+            <td> <label class="control-label">Last Name</label></td>
+            <td>
+                <input class="form-control" name="lastName"
+                       [(ngModel)]="patientData.lastName" type="text"
+                       placeholder="lastName" autocomplete="off" required />
+            </td>
+        </tr>
+        <tr>
+            <td> <label class="control-label">Gender</label></td>
+            <td>
+
+                <select class="form-control input-lg" id="gender" [(ngModel)]="patientData.gender">
+                    <option value="Male" [ngValue]="Male">Male</option>
+                    <option value="Female" [ngValue]="Feale">Female</option>
+                </select>
+                <!--<input class="form-control" name="gender"
+                ng-model="gender" type="text"
+                placeholder="gender" autocomplete="off" required />-->
+            </td>
+        </tr>
+        <tr>
+            <td> <label class="control-label">Date of Birth</label></td>
+            <td>
+                <!--<ng2-datepicker [options]="options" [(ngModel)]="date">
+                </ng2-datepicker>-->
+                <input class="form-control" name="dob"
+                       [(ngModel)]="patientData.dob" type="text"
+                       placeholder="dob" autocomplete="off" required />
+            </td>
+        </tr>
+        <tr>
+            <td> <label class="control-label"> State</label></td>
+            <td>
+                <select *ngIf="states" [(ngModel)]="patientData.state" (change)="changeCity($event.target.value)" class="form-control input-lg" id="state" >
+                    <!--<select placeholder="state" (change)="changeCity($event.target.value)" [(ngModel)]="selectedState">-->
+                    <option value="0">Select State</option>
+                    <option *ngFor="let state of states" [value]="state.id">{{state.name}} </option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td> <label class="control-label"> City</label></td>
+            <td>
+                <select class="form-control input-lg" id="city" [(ngModel)]="patientData.city">
+                    <option *ngIf="!selectedState" value="0">Select City</option>
+                    <option *ngFor="let city of cities" [value]="city.id">{{city.name}} </option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <!--<button class="btn btn-primary">Submit</button>-->
+                <button type="submit" class="btn btn-primary"
+            id="btnSave" (click)="addPatientValue()">
+        Save
+    </button>
+                <!--<button class="btn btn-default" type="button" (click)="addPatientValue()">Add</button>-->
+            </td>
+        </tr>
+    </table>
+</form>
+
+<!--<patientlist></patientlist>-->
